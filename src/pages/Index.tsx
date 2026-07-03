@@ -89,6 +89,36 @@ const Index = () => {
     }, 700);
   };
 
+  const [leadType, setLeadType] = useState('Telegram');
+  const [leadContact, setLeadContact] = useState('');
+  const [leadMessage, setLeadMessage] = useState('');
+  const [leadStatus, setLeadStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const sendLead = async () => {
+    if (!leadContact.trim()) {
+      setLeadStatus('error');
+      return;
+    }
+    setLeadStatus('loading');
+    try {
+      const res = await fetch('https://functions.poehali.dev/ce39dd06-7432-459d-bfd0-a2e040829a01', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contact_type: leadType,
+          contact_value: leadContact,
+          message: leadMessage,
+        }),
+      });
+      if (!res.ok) throw new Error('fail');
+      setLeadStatus('success');
+      setLeadContact('');
+      setLeadMessage('');
+    } catch {
+      setLeadStatus('error');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* NAV */}
@@ -253,12 +283,60 @@ const Index = () => {
                   ))}
                 </div>
               </div>
-              <div className="text-center">
-                <Icon name="Sparkles" className="text-primary mx-auto mb-4 animate-float-slow" size={56} />
-                <p className="font-display text-2xl mb-6">Онлайн-чат работает 24/7</p>
-                <Button size="lg" onClick={() => setChatOpen(true)} className="bg-primary text-primary-foreground hover:opacity-90 font-semibold glow-gold">
-                  <Icon name="MessageCircle" size={20} /> Открыть чат
-                </Button>
+              <div>
+                <h3 className="font-display text-2xl font-bold mb-4">Оставить заявку</h3>
+                <div className="space-y-3">
+                  <div className="flex gap-2">
+                    <select
+                      value={leadType}
+                      onChange={(e) => setLeadType(e.target.value)}
+                      className="bg-muted rounded-xl px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/50 border border-border/50"
+                    >
+                      <option value="Telegram">Telegram</option>
+                      <option value="WhatsApp">WhatsApp</option>
+                      <option value="Discord">Discord</option>
+                      <option value="VK">VK</option>
+                      <option value="Другое">Другое</option>
+                    </select>
+                    <input
+                      value={leadContact}
+                      onChange={(e) => setLeadContact(e.target.value)}
+                      placeholder="Ваш контакт, например @nick"
+                      className="flex-1 bg-muted rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/50 border border-border/50"
+                    />
+                  </div>
+                  <textarea
+                    value={leadMessage}
+                    onChange={(e) => setLeadMessage(e.target.value)}
+                    placeholder="Какая услуга интересует?"
+                    rows={3}
+                    className="w-full bg-muted rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/50 border border-border/50 resize-none"
+                  />
+                  <Button
+                    size="lg"
+                    onClick={sendLead}
+                    disabled={leadStatus === 'loading'}
+                    className="w-full bg-primary text-primary-foreground hover:opacity-90 font-semibold glow-gold"
+                  >
+                    {leadStatus === 'loading' ? (
+                      <>Отправляем...</>
+                    ) : (
+                      <>
+                        <Icon name="Send" size={18} /> Отправить заявку
+                      </>
+                    )}
+                  </Button>
+                  {leadStatus === 'success' && (
+                    <p className="text-sm text-green-400 flex items-center gap-1.5">
+                      <Icon name="CheckCircle2" size={16} /> Заявка отправлена! Скоро свяжемся.
+                    </p>
+                  )}
+                  {leadStatus === 'error' && (
+                    <p className="text-sm text-destructive flex items-center gap-1.5">
+                      <Icon name="AlertCircle" size={16} /> Заполните контакт и попробуйте снова.
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

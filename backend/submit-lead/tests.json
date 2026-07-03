@@ -1,0 +1,31 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Создание заявки",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "contact_type": "Telegram",
+        "contact_value": "@test_user",
+        "service": "Открытие карты на 100%",
+        "message": "Хочу заказать услугу"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Ошибка без контакта",
+      "method": "POST",
+      "path": "/",
+      "body": {"service": "test"},
+      "expectedStatus": 400
+    }
+  ]
+}
