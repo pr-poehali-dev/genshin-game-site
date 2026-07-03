@@ -50,6 +50,33 @@ const services = [
   },
 ];
 
+const reviews = [
+  {
+    name: 'Артём К.',
+    tag: 'AR 58 · Пиро',
+    text: 'Закрыли Бездну на 36 звёзд за вечер. Всё честно, аккаунт в целости. Рекомендую!',
+    rating: 5,
+  },
+  {
+    name: 'Виктория М.',
+    tag: 'AR 45 · Гидро',
+    text: 'Прокачали Фурину под мету, собрали артефакты. DPS вырос в 2 раза, я в восторге ✨',
+    rating: 5,
+  },
+  {
+    name: 'Дмитрий С.',
+    tag: 'AR 60 · Электро',
+    text: 'Открыли карту Фонтейна на 100%, все окулусы и сундуки. Быстро и без вопросов.',
+    rating: 5,
+  },
+  {
+    name: 'Елена П.',
+    tag: 'AR 52 · Крио',
+    text: 'Фарм ресурсов на возвышение — сэкономила кучу времени. Общались через чат, отвечали моментально.',
+    rating: 5,
+  },
+];
+
 const Index = () => {
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -82,6 +109,7 @@ const Index = () => {
             <a href="#home" className="hover:text-primary transition-colors">Главная</a>
             <a href="#services" className="hover:text-primary transition-colors">Услуги</a>
             <a href="#pricing" className="hover:text-primary transition-colors">Прайс</a>
+            <a href="#reviews" className="hover:text-primary transition-colors">Отзывы</a>
             <a href="#contacts" className="hover:text-primary transition-colors">Контакты</a>
           </nav>
           <Button onClick={() => setChatOpen(true)} className="bg-primary text-primary-foreground hover:opacity-90 font-semibold">
@@ -158,6 +186,43 @@ const Index = () => {
                   <Button size="sm" onClick={() => setChatOpen(true)} className="bg-primary/90 text-primary-foreground hover:opacity-90 font-semibold">
                     Заказать
                   </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section id="reviews" className="py-24 relative">
+        <div className="container">
+          <div className="text-center mb-16">
+            <span className="text-secondary font-semibold tracking-widest text-sm uppercase">Отзывы</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mt-2">
+              Что говорят <span className="text-gold-gradient">Путешественники</span>
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {reviews.map((r, i) => (
+              <div
+                key={r.name}
+                className="card-glass rounded-2xl p-6 border border-border/50 hover:border-primary/50 transition-all hover:-translate-y-1.5 animate-fade-up"
+                style={{ animationDelay: `${i * 80}ms` }}
+              >
+                <div className="flex gap-0.5 mb-4">
+                  {Array.from({ length: r.rating }).map((_, k) => (
+                    <Icon key={k} name="Star" className="text-primary fill-primary" size={16} />
+                  ))}
+                </div>
+                <p className="text-sm text-foreground/90 leading-relaxed mb-6">«{r.text}»</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center font-display font-bold text-primary">
+                    {r.name[0]}
+                  </div>
+                  <div>
+                    <div className="font-medium text-sm">{r.name}</div>
+                    <div className="text-xs text-secondary">{r.tag}</div>
+                  </div>
                 </div>
               </div>
             ))}
