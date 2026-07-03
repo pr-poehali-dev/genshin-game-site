@@ -173,11 +173,10 @@ const Index = () => {
                 className="group card-glass rounded-2xl p-7 border border-border/50 hover:border-primary/60 transition-all hover:-translate-y-1.5 animate-fade-up"
                 style={{ animationDelay: `${i * 80}ms` }}
               >
-                <div className="flex items-center justify-between mb-5">
+                <div className="mb-5">
                   <div className="w-14 h-14 rounded-xl bg-primary/15 flex items-center justify-center group-hover:glow-gold transition-all">
                     <Icon name={s.icon} className="text-primary" size={26} />
                   </div>
-                  <span className="text-xs px-3 py-1 rounded-full bg-secondary/15 text-secondary font-medium">{s.element}</span>
                 </div>
                 <h3 className="font-display text-2xl font-bold mb-2">{s.title}</h3>
                 <p className="text-muted-foreground text-sm mb-6 leading-relaxed">{s.desc}</p>
