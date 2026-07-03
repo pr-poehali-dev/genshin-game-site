@@ -130,10 +130,10 @@ const Index = () => {
               <Icon name="Star" size={16} /> Бустинг Genshin Impact №1
             </div>
             <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.05] mb-6">
-              Пройди <span className="text-gold-gradient">Тейват</span> без гринда
+              Забота о твоём аккаунте в <span className="text-gold-gradient">Тейвате</span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-              Прокачка персонажей, добыча ресурсов, закрытие Бездны и боссов. Быстро, безопасно и с гарантией результата.
+              Открытие карты, ивенты, окулусы, печати и примогемы — берём рутину на себя, пока ты занят своими делами.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="#services">
