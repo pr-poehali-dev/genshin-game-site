@@ -238,9 +238,8 @@ const Index = () => {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { icon: 'Send', label: 'Telegram', val: '@teyvat_boost' },
-                    { icon: 'MessageCircle', label: 'Discord', val: 'teyvatboost' },
-                    { icon: 'Mail', label: 'Почта', val: 'hello@teyvat-boost.gg' },
+                    { icon: 'Send', label: 'Telegram', val: '@Padisarah_pudding' },
+                    { icon: 'Mail', label: 'Почта', val: 'lisica93617@gmail.com' },
                   ].map((c) => (
                     <div key={c.label} className="flex items-center gap-4">
                       <div className="w-11 h-11 rounded-lg bg-secondary/15 flex items-center justify-center">
