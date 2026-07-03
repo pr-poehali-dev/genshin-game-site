@@ -4,35 +4,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 45% 8%;
+    --foreground: 42 45% 92%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 208 40% 13%;
+    --card-foreground: 42 45% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 208 40% 13%;
+    --popover-foreground: 42 45% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 42 72% 58%;
+    --primary-foreground: 210 50% 10%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 190 65% 45%;
+    --secondary-foreground: 210 50% 10%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 208 30% 20%;
+    --muted-foreground: 200 20% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 280 55% 62%;
+    --accent-foreground: 42 45% 96%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 55%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 200 30% 24%;
+    --input: 200 30% 24%;
+    --ring: 42 72% 58%;
 
-    --radius: 0.5rem;
+    --radius: 0.9rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -97,5 +97,68 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Rubik", sans-serif;
   }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Cormorant", serif;
+  }
+  .text-gold-gradient {
+    background: linear-gradient(
+      120deg,
+      hsl(42 80% 70%),
+      hsl(38 65% 50%),
+      hsl(42 85% 75%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .glow-gold {
+    box-shadow: 0 0 40px -8px hsl(42 72% 58% / 0.55);
+  }
+  .card-glass {
+    background: linear-gradient(
+      160deg,
+      hsl(208 40% 15% / 0.9),
+      hsl(210 45% 10% / 0.9)
+    );
+    backdrop-filter: blur(10px);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
 }

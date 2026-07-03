@@ -1,15 +1,275 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import Icon from '@/components/ui/icon';
+import { Button } from '@/components/ui/button';
+
+const HERO_IMG =
+  'https://cdn.poehali.dev/projects/a3463ffc-226b-412b-a57f-123213b47db3/files/78188b14-bb15-4d95-bc6e-4a0c44fa248f.jpg';
+
+const services = [
+  {
+    icon: 'Swords',
+    element: 'Пиро',
+    title: 'Прокачка ранга',
+    desc: 'Поднимем Ранг Приключений до нужного уровня. Открытие мира, квесты, репутация.',
+    price: 'от 990 ₽',
+  },
+  {
+    icon: 'Gem',
+    element: 'Гео',
+    title: 'Добыча ресурсов',
+    desc: 'Фарм материалов возвышения, руды, мора и опыта персонажей под ваш билд.',
+    price: 'от 590 ₽',
+  },
+  {
+    icon: 'Skull',
+    element: 'Электро',
+    title: 'Боссы и Бездна',
+    desc: 'Закрытие Витой Бездны на 36 звёзд и еженедельные боссы за дроп.',
+    price: 'от 1490 ₽',
+  },
+  {
+    icon: 'Sparkles',
+    element: 'Анемо',
+    title: 'Прокачка персонажа',
+    desc: 'Талант, оружие и артефакты. Соберём ваш DPS-ростер под мету.',
+    price: 'от 1290 ₽',
+  },
+  {
+    icon: 'Map',
+    element: 'Гидро',
+    title: 'Открытие карты 100%',
+    desc: 'Собираем окулусы, сундуки и точки телепорта во всех регионах Тейвата.',
+    price: 'от 1990 ₽',
+  },
+  {
+    icon: 'Crown',
+    element: 'Крио',
+    title: 'Пасс и события',
+    desc: 'Полное закрытие Боевого пропуска и временных ивентов с наградами.',
+    price: 'от 790 ₽',
+  },
+];
 
 const Index = () => {
+  const [chatOpen, setChatOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { from: 'bot', text: 'Привет, Путешественник! Я на связи. Какую услугу хочешь заказать?' },
+  ]);
+  const [input, setInput] = useState('');
+
+  const send = () => {
+    if (!input.trim()) return;
+    setMessages((m) => [...m, { from: 'me', text: input }]);
+    setInput('');
+    setTimeout(() => {
+      setMessages((m) => [
+        ...m,
+        { from: 'bot', text: 'Принял! Бустер скоро ответит и рассчитает стоимость ✨' },
+      ]);
+    }, 700);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
-      <span className="absolute bottom-8 left-1/2 -translate-x-1/2 inline-block bg-[#FF6637] text-white text-sm px-4 py-2 rounded-full whitespace-nowrap">
-        Подождите 5 минут, Юра создает первую версию проекта с нуля
-      </span>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* NAV */}
+      <header className="fixed top-0 inset-x-0 z-40 border-b border-border/40 card-glass">
+        <div className="container flex items-center justify-between h-16">
+          <a href="#home" className="flex items-center gap-2">
+            <Icon name="Compass" className="text-primary" size={26} />
+            <span className="font-display text-2xl font-bold text-gold-gradient">Teyvat Boost</span>
+          </a>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#home" className="hover:text-primary transition-colors">Главная</a>
+            <a href="#services" className="hover:text-primary transition-colors">Услуги</a>
+            <a href="#pricing" className="hover:text-primary transition-colors">Прайс</a>
+            <a href="#contacts" className="hover:text-primary transition-colors">Контакты</a>
+          </nav>
+          <Button onClick={() => setChatOpen(true)} className="bg-primary text-primary-foreground hover:opacity-90 font-semibold">
+            <Icon name="MessageCircle" size={18} /> Чат
+          </Button>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section id="home" className="relative min-h-screen flex items-center">
+        <div className="absolute inset-0">
+          <img src={HERO_IMG} alt="Тейват" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background" />
+        </div>
+        <div className="container relative z-10 pt-24">
+          <div className="max-w-2xl animate-fade-up">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/40 bg-primary/10 text-primary text-sm mb-6">
+              <Icon name="Star" size={16} /> Бустинг Genshin Impact №1
+            </div>
+            <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.05] mb-6">
+              Пройди <span className="text-gold-gradient">Тейват</span> без гринда
+            </h1>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl">
+              Прокачка персонажей, добыча ресурсов, закрытие Бездны и боссов. Быстро, безопасно и с гарантией результата.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="#services">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90 font-semibold glow-gold">
+                  Смотреть услуги <Icon name="ArrowRight" size={18} />
+                </Button>
+              </a>
+              <Button size="lg" variant="outline" onClick={() => setChatOpen(true)} className="border-secondary text-secondary hover:bg-secondary/10 font-semibold">
+                <Icon name="MessageCircle" size={18} /> Написать в чат
+              </Button>
+            </div>
+            <div className="flex gap-8 mt-12">
+              {[['2000+', 'заказов'], ['4.9★', 'рейтинг'], ['24/7', 'на связи']].map(([n, l]) => (
+                <div key={l}>
+                  <div className="font-display text-3xl font-bold text-gold-gradient">{n}</div>
+                  <div className="text-sm text-muted-foreground">{l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES + PRICING */}
+      <section id="services" className="py-24 relative">
+        <div className="container">
+          <div className="text-center mb-16">
+            <span className="text-secondary font-semibold tracking-widest text-sm uppercase">Услуги и прайс</span>
+            <h2 id="pricing" className="font-display text-4xl md:text-5xl font-bold mt-2">
+              Что мы <span className="text-gold-gradient">прокачаем</span>
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((s, i) => (
+              <div
+                key={s.title}
+                className="group card-glass rounded-2xl p-7 border border-border/50 hover:border-primary/60 transition-all hover:-translate-y-1.5 animate-fade-up"
+                style={{ animationDelay: `${i * 80}ms` }}
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-14 h-14 rounded-xl bg-primary/15 flex items-center justify-center group-hover:glow-gold transition-all">
+                    <Icon name={s.icon} className="text-primary" size={26} />
+                  </div>
+                  <span className="text-xs px-3 py-1 rounded-full bg-secondary/15 text-secondary font-medium">{s.element}</span>
+                </div>
+                <h3 className="font-display text-2xl font-bold mb-2">{s.title}</h3>
+                <p className="text-muted-foreground text-sm mb-6 leading-relaxed">{s.desc}</p>
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-2xl font-bold text-gold-gradient">{s.price}</span>
+                  <Button size="sm" onClick={() => setChatOpen(true)} className="bg-primary/90 text-primary-foreground hover:opacity-90 font-semibold">
+                    Заказать
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACTS */}
+      <section id="contacts" className="py-24 relative">
+        <div className="container">
+          <div className="card-glass rounded-3xl border border-border/50 p-10 md:p-16 relative overflow-hidden">
+            <Icon name="Compass" className="absolute -right-10 -bottom-10 text-primary/5 animate-float-slow" size={220} />
+            <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
+              <div>
+                <span className="text-secondary font-semibold tracking-widest text-sm uppercase">Контакты</span>
+                <h2 className="font-display text-4xl md:text-5xl font-bold mt-2 mb-4">
+                  Готов <span className="text-gold-gradient">начать</span>?
+                </h2>
+                <p className="text-muted-foreground mb-8">
+                  Напиши в чат или в мессенджеры — рассчитаем стоимость и стартуем в течение часа.
+                </p>
+                <div className="space-y-4">
+                  {[
+                    { icon: 'Send', label: 'Telegram', val: '@teyvat_boost' },
+                    { icon: 'MessageCircle', label: 'Discord', val: 'teyvatboost' },
+                    { icon: 'Mail', label: 'Почта', val: 'hello@teyvat-boost.gg' },
+                  ].map((c) => (
+                    <div key={c.label} className="flex items-center gap-4">
+                      <div className="w-11 h-11 rounded-lg bg-secondary/15 flex items-center justify-center">
+                        <Icon name={c.icon} className="text-secondary" size={20} />
+                      </div>
+                      <div>
+                        <div className="text-sm text-muted-foreground">{c.label}</div>
+                        <div className="font-medium">{c.val}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="text-center">
+                <Icon name="Sparkles" className="text-primary mx-auto mb-4 animate-float-slow" size={56} />
+                <p className="font-display text-2xl mb-6">Онлайн-чат работает 24/7</p>
+                <Button size="lg" onClick={() => setChatOpen(true)} className="bg-primary text-primary-foreground hover:opacity-90 font-semibold glow-gold">
+                  <Icon name="MessageCircle" size={20} /> Открыть чат
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-border/40 py-8 text-center text-sm text-muted-foreground">
+        Teyvat Boost — бустинг Genshin Impact. Не является официальным сервисом HoYoverse.
+      </footer>
+
+      {/* CHAT WIDGET */}
+      {!chatOpen && (
+        <button
+          onClick={() => setChatOpen(true)}
+          className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center glow-gold hover:scale-105 transition-transform animate-float-slow"
+          aria-label="Открыть чат"
+        >
+          <Icon name="MessageCircle" size={28} />
+        </button>
+      )}
+
+      {chatOpen && (
+        <div className="fixed bottom-6 right-6 z-50 w-[92vw] max-w-sm rounded-2xl border border-primary/40 card-glass shadow-2xl overflow-hidden animate-fade-up">
+          <div className="flex items-center justify-between px-5 py-4 bg-primary/10 border-b border-border/50">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <Icon name="Compass" className="text-primary" size={24} />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-400 rounded-full ring-2 ring-background" />
+              </div>
+              <div>
+                <div className="font-semibold text-sm">Поддержка Teyvat Boost</div>
+                <div className="text-xs text-green-400">онлайн</div>
+              </div>
+            </div>
+            <button onClick={() => setChatOpen(false)} className="text-muted-foreground hover:text-foreground">
+              <Icon name="X" size={20} />
+            </button>
+          </div>
+          <div className="h-72 overflow-y-auto p-4 space-y-3">
+            {messages.map((m, i) => (
+              <div key={i} className={`flex ${m.from === 'me' ? 'justify-end' : 'justify-start'}`}>
+                <div
+                  className={`max-w-[80%] px-4 py-2 rounded-2xl text-sm ${
+                    m.from === 'me'
+                      ? 'bg-primary text-primary-foreground rounded-br-sm'
+                      : 'bg-muted text-foreground rounded-bl-sm'
+                  }`}
+                >
+                  {m.text}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="p-3 border-t border-border/50 flex gap-2">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && send()}
+              placeholder="Ваше сообщение..."
+              className="flex-1 bg-muted rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/50"
+            />
+            <Button onClick={send} size="icon" className="bg-primary text-primary-foreground shrink-0 rounded-xl">
+              <Icon name="Send" size={18} />
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
