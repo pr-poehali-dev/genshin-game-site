@@ -4,33 +4,33 @@
 
 @layer base {
   :root {
-    --background: 210 45% 8%;
-    --foreground: 42 45% 92%;
+    --background: 232 42% 7%;
+    --foreground: 40 38% 90%;
 
-    --card: 208 40% 13%;
-    --card-foreground: 42 45% 92%;
+    --card: 230 36% 12%;
+    --card-foreground: 40 38% 90%;
 
-    --popover: 208 40% 13%;
-    --popover-foreground: 42 45% 92%;
+    --popover: 230 36% 12%;
+    --popover-foreground: 40 38% 90%;
 
-    --primary: 42 72% 58%;
-    --primary-foreground: 210 50% 10%;
+    --primary: 40 68% 56%;
+    --primary-foreground: 232 45% 8%;
 
-    --secondary: 190 65% 45%;
-    --secondary-foreground: 210 50% 10%;
+    --secondary: 205 70% 52%;
+    --secondary-foreground: 232 45% 8%;
 
-    --muted: 208 30% 20%;
-    --muted-foreground: 200 20% 65%;
+    --muted: 230 28% 18%;
+    --muted-foreground: 220 18% 66%;
 
-    --accent: 280 55% 62%;
-    --accent-foreground: 42 45% 96%;
+    --accent: 260 50% 64%;
+    --accent-foreground: 40 38% 95%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 200 30% 24%;
-    --input: 200 30% 24%;
-    --ring: 42 72% 58%;
+    --border: 225 28% 22%;
+    --input: 225 28% 22%;
+    --ring: 40 68% 56%;
 
     --radius: 0.9rem;
 
@@ -97,7 +97,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Rubik", sans-serif;
+    font-family: "Golos Text", sans-serif;
   }
 }
 

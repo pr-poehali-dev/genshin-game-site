@@ -3,7 +3,7 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
 const HERO_IMG =
-  'https://cdn.poehali.dev/projects/a3463ffc-226b-412b-a57f-123213b47db3/files/78188b14-bb15-4d95-bc6e-4a0c44fa248f.jpg';
+  'https://cdn.poehali.dev/projects/a3463ffc-226b-412b-a57f-123213b47db3/files/cf84edb7-e40a-40ac-83c0-9d9000e6118e.jpg';
 
 const services = [
   {
